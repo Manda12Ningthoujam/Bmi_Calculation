@@ -1,22 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useRef ,useState} from 'react';
+import './css/App.css';
+
 
 function App() {
+  let NameInput=useRef();
+  let [name,SetName]=useState('');
+  let [buttonStatus,setButtonStatus] = useState(true);
+  function SubmitNameHandler(){
+    SetName(NameInput.current.value)
+    setButtonStatus(false)
+  }
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Welcome to react.js bootcamp {name} !</h1>
+        <input ref={NameInput} placeholder='Enter your name' type='text'/>
+        <button className= {buttonStatus == true ? "btn"  : "d-none"} onClick={SubmitNameHandler}>Submit</button>
       </header>
     </div>
   );
